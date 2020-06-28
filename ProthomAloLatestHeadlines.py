@@ -2,7 +2,8 @@ from bs4 import BeautifulSoup
 import requests
 
 #Connection Setup !
-source_link = requests.get("https://www.prothomalo.com/").text
+ProthomAloWebsiteURL = "https://www.prothomalo.com/"
+source_link = requests.get(ProthomAloWebsiteURL).text
 soup = BeautifulSoup(source_link, "lxml")
 # cat = soup.find('div',class_="info")
 # print(cat.find('span').text)
