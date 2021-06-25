@@ -1,13 +1,30 @@
+#Update on : June 24, 2021
+
 from bs4 import BeautifulSoup
 import requests
 
-#Connection Setup !
+
 ProthomAloWebsiteURL = "https://www.prothomalo.com/"
 source_link = requests.get(ProthomAloWebsiteURL).text
 soup = BeautifulSoup(source_link, "lxml")
-# cat = soup.find('div',class_="info")
-# print(cat.find('span').text)
+soup2 = soup.find('div',class_="row2leftcolumn-m__big_box_row_2__19IML")
 
-for data in soup.findAll('div',class_="info"):
-    print(data.find('span').text)
-    print()
+
+counter = 1
+headlines = []
+unique_headlines = []
+for link in soup2.findAll('a',href=True):
+    headlines = (str(link['href']).split('/'))
+    unique_headlines.append(headlines[-1])
+    headlines.clear()
+
+unique_headlines = set(unique_headlines)
+
+for data in unique_headlines:
+    print(data)
+
+
+
+# for data in soup.findAll('div',class_="newsHeadline-m__title-link__1puEG"):
+#     print(data.find('span').text)
+#     print()
